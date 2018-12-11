@@ -10,6 +10,10 @@ class ContactForm(forms.ModelForm):
 		max_length=Contact._meta.get_field('last_name').max_length,
 		help_text="Last Name: "
 	)
+	email = forms.CharField(
+		max_length=Contact._meta.get_field('email').max_length,
+		help_text="Email: "
+	)
 	subject = forms.CharField(
 		max_length=Contact._meta.get_field('subject').max_length,
 		help_text="Subject: "
@@ -21,4 +25,4 @@ class ContactForm(forms.ModelForm):
 
 	class Meta:
 		model = Contact
-		fields = ('first_name', 'last_name', 'subject', 'message')
+		fields = ('first_name', 'last_name', 'email', 'subject', 'message')
