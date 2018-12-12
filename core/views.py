@@ -7,11 +7,11 @@ from core.forms import ContactForm
 class Home(TemplateView):
 	template_name = "home.html"
 
-def index(request):
-	context_dict = {'boldmessage': "Hello Word"}
-	return render(request, 'careerhelp/index.html', context=context_dict)
+# def index(request):
+# 	context_dict = {'boldmessage': "Hello Word"}
+# 	return render(request, 'careerhelp/index.html', context=context_dict)
 
-def contact_us(request):
+def index(request):
 	form = ContactForm()
 
 	if request.method == 'POST':
@@ -19,8 +19,8 @@ def contact_us(request):
 
 		if form.is_valid():
 			form.save(commit=True)
-			return index(request)
+			# return index(request)
 	else:
 		print(form.errors)
 
-	return render(request, 'careerhelp/contact.html', {'form': form})
+	return render(request, 'careerhelp/index.html', {'form': form})
