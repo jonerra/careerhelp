@@ -1,0 +1,21 @@
+{% extends "careerhelp/index.html" %}
+{% load bootstrap4 %}
+{% block content %}
+<div class="jumbotron">
+	<div class="row">
+		<div class="col-md-6">
+			<h1>Contact Us!</h1>
+			<form id="contact_form" method="post" action="/contact/">
+				{% csrf_token %}
+				{% for field in form.visible_fields %}
+					{{ field.errors }}
+					{{ field.help_text }}
+					{{ field }}<br />
+				{% endfor %}
+				<button type="submit" class="btn btn-primary">Submit</button>
+				<!-- <input type="submit" name="submit" value="Submit" /> -->
+			</form>
+		</div>
+	</div>
+</div>
+{% endblock %}

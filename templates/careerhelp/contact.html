@@ -1,15 +1,82 @@
-{% extends "careerhelp/index.html" %}
-{% block content %}
-<h1>Contact Us!</h1>
-<div>
-	<form id="contact_form" method="post" action="/contact/">
-		{% csrf_token %}
-		{% for field in form.visible_fields %}
-			{{ field.errors }}
-			{{ field.help_text }}
-			{{ field }}<br />
-		{% endfor %}
-		<input type="submit" name="submit" value="Submit" />
-	</form>
-</div>
-{% endblock %}
+{% load staticfiles %}
+{% load bootstrap4 %}
+<!DOCTYPE html>
+<html>
+ 	<head>
+
+	    <meta charset="utf-8">
+	    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	    <meta name="description" content="">
+	    <meta name="author" content="">
+
+	    <title>CareerHelp</title>
+
+	    <!-- Bootstrap core CSS -->
+	    <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+
+	    <!-- Custom fonts for this template -->
+	    <link href="{% static 'vendor/fontawesome-free/css/all.min.css' %}" rel="stylesheet" type="text/css">
+	    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+	    <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+
+	    <!-- Plugin CSS -->
+	    <link href="{% static 'vendor/magnific-popup/magnific-popup.css' %}" rel="stylesheet" type="text/css">
+
+	    <!-- Custom styles for this template -->
+	    <link href="{% static 'css/freelancer.min.css' %}" rel="stylesheet">
+
+  	</head>
+	<body>
+
+		<!-- Contact Section -->
+    	<section id="contact">
+      		<div class="container">
+        		<h2 class="text-center text-uppercase text-secondary mb-0">Contact Me</h2>
+        		<hr class="star-dark mb-5">
+        		<div class="row">
+          			<div class="col-lg-8 mx-auto">
+            			<!-- To configure the contact form email address, go to mail/contact_me.php and update the email address in the PHP file on line 19. -->
+            			<!-- The form should work on most web servers, but if the form is not working you may need to configure your web server differently. -->
+<!--             			<form name="sentMessage" id="contactForm" novalidate="novalidate"> -->
+						<form id="contact_form" method="post" action="/contact/">
+							{% csrf_token %}
+							{% for field in form.visible_fields %}
+	              				<div class="control-group">
+	                				<div class="form-group floating-label-form-group controls mb-0 pb-2">
+	                  					<label>{{ field.help_text }}</label>
+	                  					<!-- <input id="{{ field.name }}"> -->
+	                  					<input class="form-control" type="text" placeholder="{{ field.help_text }}" id="{{ field }}" name="{{ field }}">
+	                  					<p class="help-block text-danger"></p>
+	                				</div>
+	              				</div>
+	              			{% endfor %}
+              				<br>
+              				<div id="success"></div>
+              				<div class="form-group">
+                				<button type="submit" class="btn btn-primary btn-xl" id="sendMessageButton">Send</button>
+              				</div>
+            			</form>
+          			</div>
+        		</div>
+      		</div>
+    	</section>
+
+
+
+
+		<!-- Bootstrap core JavaScript -->
+	    <script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
+	    <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+
+	    <!-- Plugin JavaScript -->
+	    <script src="{% static 'vendor/jquery-easing/jquery.easing.min.js' %}"></script>
+	    <script src="{% static 'vendor/magnific-popup/jquery.magnific-popup.min.js' %}"></script>
+
+	    <!-- Contact Form JavaScript -->
+	    <script src="{% static 'js/jqBootstrapValidation.js' %}"></script>
+	    <script src="{% static 'js/contact_me.js' %}"></script>
+
+	    <!-- Custom scripts for this template -->
+	    <script src="{% static 'js/freelancer.min.js' %}"></script>
+	</body>
+</html>
