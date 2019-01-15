@@ -1,7 +1,8 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse
 from django.views.generic import TemplateView
 from core.forms import ContactForm
+from core.models import Service
 
 # Create your views here.
 class Home(TemplateView):
@@ -24,3 +25,10 @@ def index(request):
 		print(form.errors)
 
 	return render(request, 'careerhelp/index.html', {'form': form})
+
+def service_detail(request, slug):
+	service = get_object_or_404(Service, slug=slug)
+	context = {
+		'service': service
+	}
+	return render(request, 'careerhelp/service_detail.html', context)
